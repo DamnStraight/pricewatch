@@ -1,10 +1,12 @@
-import { createExpressServer, useContainer } from "routing-controllers";
-import { Container } from "typedi";
 import path from "path";
-import logger from "./logger";
+import { createExpressServer, useContainer as useContainerRouter } from "routing-controllers";
+import { useContainer as useContainerTypeorm } from "typeorm";
+import { Container } from "typeorm-typedi-extensions";
 import { createTypeormConn } from "./connection";
+import logger from "./logger";
 
-useContainer(Container);
+useContainerRouter(Container);
+useContainerTypeorm(Container);
 
 const app = createExpressServer({
   controllers: [path.join(__dirname, "/controller/*.ts")],
