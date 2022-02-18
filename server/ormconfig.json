@@ -1,0 +1,13 @@
+{
+  "type": "postgres",
+  "database": "pricewatch",
+  "synchronize": true,
+  "logging": true,
+  "host": "localhost",
+  "username": "damnstraight",
+  "password": "damnstraight",
+  "port": "5432",
+  "entities": ["src/entity/**/*.ts"],
+  "migrations": ["src/migration/**/*.ts"],
+  "subscribers": ["src/subscriber/**/*.ts"]
+}
