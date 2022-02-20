@@ -9,8 +9,8 @@ import {
 } from "typeorm";
 
 export enum UserRole {
-  USER = "user",
-  ADMIN = "admin",
+  USER = "USER",
+  ADMIN = "ADMIN",
 }
 
 @Entity()

@@ -1,0 +1,10 @@
+Entity: User
+items:
+  user1:
+    email: damnstraight@email.com
+    password: damnstraight
+    role: "ADMIN"
+  user1:
+    email: jimmy@email.com
+    password: jimmy
+    role: "ADMIN"

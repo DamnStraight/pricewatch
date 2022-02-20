@@ -10,8 +10,6 @@ export default class UserService {
   private readonly userRepo: UserRepository;
 
   async register(registrationData: { email: string; password: string }) {
-    logger.info("register", "attempted", registrationData);
-
     const { email, password } = registrationData;
 
     // Check that the email/username does not currently exist

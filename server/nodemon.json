@@ -2,5 +2,5 @@
   "watch": ["src/**/*.ts"],
   "ext": "ts",
   "ignore": ["src/**/*.spec.ts"],
-  "exec": "NODE_PATH=./src ts-node --files src/index.ts"
+  "exec": "NODE_ENV=dev NODE_PATH=./src ts-node --files src/index.ts"
 }
