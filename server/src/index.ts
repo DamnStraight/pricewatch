@@ -1,4 +1,4 @@
-import 'dotenv/config';
+require('dotenv-flow').config(); // Ensure this gets called before logger import
 
 import { Application } from 'express';
 import path from 'path';
