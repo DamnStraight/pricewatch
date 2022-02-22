@@ -9,7 +9,10 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization": false,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "typeRoots": [
+      "./types"
+    ]
   },
   "exclude": [
     "test",

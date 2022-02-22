@@ -1,0 +1,29 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parserOptions": { "project": ["./tsconfig.json"] },
+  "rules": {
+    "comma-dangle": 0,
+    "curly": 2,
+    "key-spacing": [2, {
+      "singleLine": {
+        "beforeColon" : false,
+        "afterColon"  : true
+    },
+    "align": {
+        "beforeColon" : true,
+        "afterColon"  : true,
+        "on"          : "colon"
+    }
+    }],
+    "eqeqeq": "error",
+    "@typescript-eslint/no-empty-interface": [
+      "error",
+      {
+        "allowSingleExtends": true
+      }
+    ]
+  }
+}
