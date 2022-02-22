@@ -8,7 +8,7 @@
     "postgres:start": "docker-compose up -d",
     "postgres:stop": "docker-compose down --rmi local -v",
     "prepare": "cd .. && husky install server/.husky",
-    "test": "NODE_ENV=test env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'test/**/*.ts'"
+    "test": "NODE_ENV=test mocha -r ts-node/register 'test/**/*.ts'"
   },
   "keywords": [],
   "author": "",

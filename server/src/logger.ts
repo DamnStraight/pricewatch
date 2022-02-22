@@ -3,11 +3,11 @@ import Pino from 'pino';
 export const createLogger = (): Pino.Logger => {
   const loggingInstance = Pino(
     {
-      level: process.env.LOG_LEVEL,
-      useLevelLabels: true,
-      transport: {
-        target: 'pino-pretty',
-        options: {
+      level          : process.env.LOG_LEVEL,
+      useLevelLabels : true,
+      transport      : {
+        target  : 'pino-pretty',
+        options : {
           translateTime: true,
         },
       },

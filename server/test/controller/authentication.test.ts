@@ -1,6 +1,9 @@
+import * as dotenv from 'dotenv-flow';
+dotenv.config();
+
 import { expect } from 'chai';
 import { Application } from 'express';
-import { describe } from 'mocha';
+import { afterEach, describe } from 'mocha';
 import path from 'path';
 import { createExpressServer, useContainer as useContainerRouter } from 'routing-controllers';
 import request from 'supertest';
@@ -32,6 +35,11 @@ describe('Authentication Controller', () => {
 
   beforeEach(() => {
     authController = new AuthenticationController(new UserService());
+    connection?.synchronize();
+  });
+
+  afterEach(() => {
+    connection?.dropDatabase();
   });
 
   it('Should return "Test"', async () => {
