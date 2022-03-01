@@ -8,6 +8,5 @@ export const createTypeormConn = async (): Promise<Connection | null> => {
   } catch (err) {
     logger.error(err);
   }
-  
   return null;
 };

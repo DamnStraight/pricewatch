@@ -1,6 +1,6 @@
-Entity: User
+entity: User
 items:
-  user1:
+  user0:
     email: damnstraight@email.com
     password: damnstraight
     role: "ADMIN"

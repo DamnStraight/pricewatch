@@ -13,7 +13,7 @@ export enum UserRole {
   ADMIN = "ADMIN",
 }
 
-@Entity()
+@Entity({ name: "users"})
 export class User {
   public constructor(user?: Partial<User>) {
     if (user) {

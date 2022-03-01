@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import * as dotenv from 'dotenv-flow';
 dotenv.config(); // Ensure this is called before the logger import
 
@@ -7,13 +8,19 @@ import pino from 'pino-http';
 import { createExpressServer, useContainer as useContainerRouter } from 'routing-controllers';
 import { useContainer as useContainerTypeorm } from 'typeorm';
 import { Container } from 'typeorm-typedi-extensions';
+
 import { createTypeormConn } from './connection';
+import loadFixtures from './fixtures';
 import logger from './logger';
 
 const port = 3000;
 
 const server = async () => {
-  // Hook in our routing and database DI
+  if (process.env.NODE_ENV === 'dev') {
+    await loadFixtures('./src/fixtures/');
+  }
+
+  // Setup our routing and database DI
   useContainerRouter(Container);
   useContainerTypeorm(Container);
 
