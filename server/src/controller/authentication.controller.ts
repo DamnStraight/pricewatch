@@ -1,17 +1,19 @@
-import { Controller, Get } from 'routing-controllers';
+import { Body, Controller, Get, JsonController, Post } from 'routing-controllers';
 import { Service } from 'typedi';
-import UserService from '../service/user.service';
+import logger from '../logger';
+import UserService, { RegistrationData } from '../service/user.service';
+import Joi from 'joi'
 
 @Service()
-@Controller('/authentication')
+@JsonController('/authentication')
 export default class AuthenticationController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('/register')
-  async register() {
+  @Post('/register')
+  async register(@Body() data: RegistrationData) {
     try {
-      await this.userService.register({ email: 'test', password: 'test' });
-      return { data: 'test' };
+      logger.info(data);
+      return await this.userService.register(data);
     } catch {
       return 'Error';
     }
