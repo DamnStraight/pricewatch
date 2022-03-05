@@ -1,4 +1,4 @@
-import { verify, decode, JwtPayload } from 'jsonwebtoken';
+import { decode, JwtPayload, verify } from 'jsonwebtoken';
 import { Action, NotFoundError, UnauthorizedError } from 'routing-controllers';
 import { getConnection } from 'typeorm';
 import { User } from '../entity/user.entity';

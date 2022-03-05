@@ -1,21 +1,14 @@
+import Joi from 'joi';
 import {
   BadRequestError,
   Body,
   JsonController,
   OnUndefined,
-  Post,
+  Post
 } from 'routing-controllers';
 import { Service } from 'typedi';
 import AuthenticationService from '../service/authentication.service';
-import Joi from 'joi';
-import { User } from '../entity/user.entity';
 import { RegisterPayload } from './interface/authentication.interface';
-
-export interface RegisterResponse {
-  user: User;
-  accessToken: string;
-  refreshToken: string;
-}
 
 @Service()
 @JsonController('/authentication')
