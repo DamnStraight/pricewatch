@@ -1,4 +1,4 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 import * as dotenv from 'dotenv-flow';
 dotenv.config(); // Ensure this is called before the logger import
 
@@ -12,6 +12,7 @@ import { Container } from 'typeorm-typedi-extensions';
 import { createTypeormConn } from './connection';
 import loadFixtures from './fixtures';
 import logger from './logger';
+import { authorizationChecker, currentUserChecker } from './middleware/authentication';
 
 const port = 3000;
 
@@ -25,7 +26,10 @@ const server = async () => {
   useContainerTypeorm(Container);
 
   const app: Application = createExpressServer({
-    controllers: [path.join(__dirname, '/controller/*.ts')],
+    currentUserChecker,
+    authorizationChecker,
+    cors        : true,
+    controllers : [path.join(__dirname, '/controller/*.ts')],
   });
 
   app.use(pino);

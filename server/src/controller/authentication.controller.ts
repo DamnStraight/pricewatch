@@ -1,21 +1,41 @@
-import { Body, Controller, Get, JsonController, Post } from 'routing-controllers';
+import {
+  BadRequestError,
+  Body,
+  JsonController,
+  OnUndefined,
+  Post,
+} from 'routing-controllers';
 import { Service } from 'typedi';
-import logger from '../logger';
-import UserService, { RegistrationData } from '../service/user.service';
-import Joi from 'joi'
+import AuthenticationService from '../service/authentication.service';
+import Joi from 'joi';
+import { User } from '../entity/user.entity';
+import { RegisterPayload } from './interface/authentication.interface';
+
+export interface RegisterResponse {
+  user: User;
+  accessToken: string;
+  refreshToken: string;
+}
 
 @Service()
 @JsonController('/authentication')
 export default class AuthenticationController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly authenticationService: AuthenticationService) {}
 
   @Post('/register')
-  async register(@Body() data: RegistrationData) {
-    try {
-      logger.info(data);
-      return await this.userService.register(data);
-    } catch {
-      return 'Error';
+  @OnUndefined(200)
+  async register(@Body() data: RegisterPayload) {
+    const schema = Joi.object<RegisterPayload>({
+      email    : Joi.string().trim().email().required(),
+      password : Joi.string().trim().min(8).max(64).required(),
+    });
+
+    const { error, value } = schema.options({ stripUnknown: true }).validate(data);
+
+    if (error || value === undefined) {
+      throw new BadRequestError(error?.message);
     }
+
+    return await this.authenticationService.register(value);
   }
 }
